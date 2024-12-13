@@ -42,7 +42,7 @@ app.post('/api/students', (req, res) => {
 });
 
 // Read all students
-app.get('/api/students', (req, res) => {
+app.get('/students', (req, res) => {
   const sql = 'SELECT * FROM student_details';
   db.query(sql, (err, results) => {
     if (err) {
@@ -53,7 +53,7 @@ app.get('/api/students', (req, res) => {
 });
 
 // Read a single student by ID
-app.get('/api/students/:id', (req, res) => {
+app.get('/students/:id', (req, res) => {
   const { id } = req.params;
   const sql = 'SELECT * FROM student_details WHERE id = ?';
   db.query(sql, [id], (err, result) => {
@@ -68,7 +68,7 @@ app.get('/api/students/:id', (req, res) => {
 });
 
 // Update a student by ID
-app.put('/api/students/:id', (req, res) => {
+app.put('/students/:id', (req, res) => {
   const { id } = req.params;
   const { firstname, lastname, email, phone, gender } = req.body;
   const sql = 'UPDATE student_details SET firstname = ?, lastname = ?, email = ?, phone = ?, gender = ? WHERE id = ?';
@@ -84,7 +84,7 @@ app.put('/api/students/:id', (req, res) => {
 });
 
 // Delete a student by ID
-app.delete('/api/students/:id', (req, res) => {
+app.delete('/students/:id', (req, res) => {
   const { id } = req.params;
   const sql = 'DELETE FROM student_details WHERE id = ?';
   db.query(sql, [id], (err, result) => {
